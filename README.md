@@ -109,7 +109,6 @@ Now let's see how we can practically access information contained into annotatio
 Here's an example of the first access method (the sample will use the class `AI` for ease of exposition):
 
 ```php
-include_once "path-to-lib-folder/src/introspekt/autoload.php"; // class loader! - not needed if using composer
 // make an instance
 $hal = new AI();
 // get an interface to the annotated class
