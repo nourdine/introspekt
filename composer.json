@@ -1,0 +1,21 @@
+{
+   "name": "nourdine/introspekt",
+   "type": "library",
+   "description": "A library allowing the usage of class and methods annotations in json format",
+   "keywords": ["json", "annotations"],
+   "license": "GNU GPL v3",
+   "authors": [
+      {
+         "name": "fabs aka (nourdine)",
+         "email": "admin@nourdine.net"
+      }
+   ],
+   "require": {
+      "php": ">=5.3"
+   },
+   "autoload": {
+      "psr-0": {
+         "introspekt": "src/"
+      }
+   }
+}
