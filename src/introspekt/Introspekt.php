@@ -2,28 +2,21 @@
 
 namespace introspekt;
 
-use ReflectionClass;
 use introspekt\AnnotationsParcel;
+use ReflectionClass;
 
 /**
  * Core class allowing introspection of annotated classes and objects.
  */
 abstract class Introspekt {
 
-   static private $parcels = array();
-
-   static private function getMethodsDocComments(array $methods) {
-      $docComments = array();
-      foreach ($methods as $m) {
-         $docComments[$m->getName()] = $m->getDocComment();
-      }
-      return $docComments;
-   }
+   static private $parcels = [];
 
    /**
     * Get an AnnotationsParcel containing the annotations of a certain class.
+    * 
     * @param object|string $o An object or the name of a class
-    * @return nourdine\introspekt\AnnotationsParcel
+    * @return AnnotationsParcel
     */
    static public function get($o) {
 
@@ -56,5 +49,15 @@ abstract class Introspekt {
     */
    static public function getAnnotationsParcelByClassName($name) {
       return self::$parcels[$name];
+   }
+
+   static private function getMethodsDocComments(array $methods) {
+      $docComments = [];
+
+      foreach ($methods as $m) {
+         $docComments[$m->getName()] = $m->getDocComment();
+      }
+
+      return $docComments;
    }
 }
