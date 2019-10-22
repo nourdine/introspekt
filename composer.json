@@ -3,7 +3,7 @@
    "type": "library",
    "description": "A library allowing the usage of class and methods annotations in json format",
    "keywords": ["json", "annotations"],
-   "license": "GNU GPL v3",
+   "license": "MIT",
    "authors": [
       {
          "name": "nourdine"
