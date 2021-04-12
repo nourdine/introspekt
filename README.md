@@ -104,7 +104,7 @@ class AI {
 Now let's see how we can practically access information contained into annotations. To gain access to the class' annotations you need to obtain a `nourdine\introspekt\AnnotationsParcel` object containing a representation of this data. There are two possible ways to do this:
 
   * via an instance of the annotted class 
-  * via the class' name
+  * using the name of the class
 
 Here's an example of the first access method (the sample will use the class `AI` for ease of exposition):
 
