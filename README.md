@@ -101,7 +101,7 @@ class AI {
 
 ### 4. Retrieve and use annotations
 
-Now let's see how we can practically access information contained into annotations. To gain access to the class' annotations you need to obtain a `nourdine\introspekt\AnnotationsParcel` object containing a representation of this data. There are two possible ways to do this:
+Now let's see how we can practically access information contained into annotations. To gain access to the annotations you need to obtain a `nourdine\introspekt\AnnotationsParcel` object containing a representation of this data. There are two possible ways to do this:
 
   * via an instance of the annotted class 
   * using the name of the class
@@ -133,7 +133,7 @@ $annotatedFoo = Introspekt::get("net\\nourdine\\recursion\Foo");
 
 All clear? 
 
-Finally remember that trying to access a non-existing annotation (both a class' or a method's one) results in a `NoAnnotationFoundException` exception being thrown. Have a look: 
+Finally remember that trying to access a non-existing annotation (both at the class or at the method's level) results in a `NoAnnotationFoundException` exception being thrown. Have a look: 
 
 ```php
 try {
