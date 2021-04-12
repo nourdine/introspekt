@@ -1,10 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use artifacts\Hacker;
 use introspekt\AnnotationsParcel;
 use introspekt\Introspekt;
 
-class AnnotationsRetrievalTest extends PHPUnit_Framework_TestCase {
+class AnnotationsRetrievalTest extends TestCase {
 
    public function testRetrievalUsingObject() {
       Introspekt::get(new Hacker());

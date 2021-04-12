@@ -1,14 +1,15 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use introspekt\Introspekt;
 use artifacts\Person;
+use introspekt\exception\NoAnnotationFoundException;
 
-class MissingAnnotationTest extends PHPUnit_Framework_TestCase {
+class MissingAnnotationTest extends TestCase {
 
-   /**
-    * @expectedException introspekt\exception\NoAnnotationFoundException
-    */
    public function testRetrieval() {
+      $this->expectException(NoAnnotationFoundException::class);
+
       Introspekt::get(new Person())->getAnnotation("@Not");
    }
 }

@@ -1,9 +1,10 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use introspekt\Introspekt;
 use artifacts\Hacker;
 
-class TypeArrayAnnotationTest extends PHPUnit_Framework_TestCase {
+class TypeArrayAnnotationTest extends TestCase {
 
    public function testRetrievedValue() {
       $annotations = Introspekt::get(new Hacker());

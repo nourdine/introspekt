@@ -182,3 +182,10 @@ json_decode($bad_json); // null
 $bad_json = '{ bar: "baz", }';
 json_decode($bad_json); // null
 ```
+
+### 7. Running Unit Tests
+
+```
+composer install
+composer run-script test
+```

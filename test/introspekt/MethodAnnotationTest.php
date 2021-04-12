@@ -1,9 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use introspekt\Introspekt;
 use artifacts\Hacker;
+use introspekt\exception\NoAnnotationFoundException;
 
-class MethodAnnotationTest extends PHPUnit_Framework_TestCase {
+class MethodAnnotationTest extends TestCase {
 
    public function testHasValue() {
       $annotations = Introspekt::get(new Hacker());
@@ -23,10 +25,9 @@ class MethodAnnotationTest extends PHPUnit_Framework_TestCase {
       $this->assertEquals($data[1], "python");
    }
 
-   /**
-    * @expectedException introspekt\exception\NoAnnotationFoundException
-    */
    public function testMissingValue() {
+      $this->expectException(NoAnnotationFoundException::class);
+
       $annotations = Introspekt::get(new Hacker());
       $this->assertEquals($annotations->getAnnotation("@Nooooot", "hackit"));
    }

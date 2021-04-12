@@ -1,14 +1,15 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use introspekt\Introspekt;
 use artifacts\DBBean;
 use artifacts\StackedNull;
 
-class TypeNullAnnotationTest extends PHPUnit_Framework_TestCase {
+class TypeNullAnnotationTest extends TestCase {
 
    private $annotations = null;
 
-   public function setUp() {
+   public function setUp() : void {
       $this->annotations = Introspekt::get(new DBBean());
    }
 

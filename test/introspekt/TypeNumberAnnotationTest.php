@@ -1,9 +1,10 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use introspekt\Introspekt;
 use artifacts\Geometry;
 
-class TypeNumberAnnotationTest extends PHPUnit_Framework_TestCase {
+class TypeNumberAnnotationTest extends TestCase {
 
    public function testRetrievedValue() {
       $annotations = Introspekt::get(new Geometry());

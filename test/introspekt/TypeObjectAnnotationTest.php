@@ -1,9 +1,10 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use introspekt\Introspekt;
 use artifacts\WebService;
 
-class TypeObjectAnnotationTest extends PHPUnit_Framework_TestCase {
+class TypeObjectAnnotationTest extends TestCase {
 
    public function testRetrievedValue() {
       $data = Introspekt::get(new WebService())->getAnnotation("@ServiceData");

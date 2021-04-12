@@ -44,13 +44,6 @@ abstract class Introspekt {
       return self::$parcels;
    }
 
-   /**
-    * Getter for testing purposes
-    */
-   static public function getAnnotationsParcelByClassName($name) {
-      return self::$parcels[$name];
-   }
-
    static private function getMethodsDocComments(array $methods) {
       $docComments = [];
 

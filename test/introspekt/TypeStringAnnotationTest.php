@@ -1,9 +1,10 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use introspekt\Introspekt;
 use artifacts\Person;
 
-class TypeStringAnnotationTest extends PHPUnit_Framework_TestCase {
+class TypeStringAnnotationTest extends TestCase {
 
    public function testRetrievedValue() {
       $annotations = Introspekt::get(new Person());

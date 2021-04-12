@@ -1,13 +1,14 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use introspekt\Tokenizer;
 
-class TokenizerTest extends PHPUnit_Framework_TestCase {
+class TokenizerTest extends TestCase {
 
    private $str = "";
    private $tokens = null;
 
-   public function setUp() {
+   public function setUp() : void {
       $this->str = file_get_contents(__DIR__ . "/../artifacts/annotations.txt");
       $this->tokens = (new Tokenizer())->getAnnotationLanguageTokens($this->str);
    }
