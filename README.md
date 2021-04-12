@@ -80,7 +80,7 @@ class Foo { }
 class Foo { }
 ```
 
-**[Note!]** When using arrays (associative and non) you are allowed to indent your annotation's code (instead of signleline it) provided that you do not use the "asterisk" character at the beginning of each new line.
+**[Note!]** When using arrays (associative and non) you are allowed to indent your annotation's code (instead of singleline it) provided that you do not use the "asterisk" character at the beginning of each new line.
 
 Finally let's quickly point out how there are just two scopes you can target with your funky annotations: _classes_ and _methods_. Here's some code sample that shows the two possible cases:
 
