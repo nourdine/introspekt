@@ -7,7 +7,7 @@ introspekt
 
 Annotations permit to add information (matadata) to classes and methods that can then be used at runtime to modify the behaviour of the scripts using such (annotated) classes/methods.
 
-Annotations was born in the java world and the implementation provided by _introspekt_ are kind of different from the one that is available in such language. There are [libraries](http://code.google.com/p/addendum/) out there that more closely mimic java's annotations but I thought to provide here a more laid back implementation, possibly more performant and based on the usage of annotations carrying JSON data structures rather than adopting the traditional java's annotations sintax.
+Annotations were born in the java world and the implementation provided by _introspekt_ are kind of different from the one that is available in such language. There are [libraries](http://code.google.com/p/addendum/) out there that more closely mimic java's annotations but I thought to provide here a more laid back implementation, possibly more performant and based on the usage of annotations carrying JSON data structures rather than adopting the traditional java's annotations sintax.
 
 ### 2. It's all about comments
 
