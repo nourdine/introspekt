@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use introspekt\Introspekt;
+use Introspekt\Introspekt;
 use artifacts\Hacker;
 use artifacts\DBBean;
 

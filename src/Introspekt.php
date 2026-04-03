@@ -1,8 +1,8 @@
 <?php
 
-namespace introspekt;
+namespace Introspekt;
 
-use introspekt\AnnotationsParcel;
+use Introspekt\AnnotationsParcel;
 use ReflectionClass;
 
 /**

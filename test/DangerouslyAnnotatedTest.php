@@ -1,9 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use introspekt\Introspekt;
+use Introspekt\Introspekt;
 use artifacts\Danger;
-use introspekt\AnnotationsParcel;
 
 class DangerouslyAnnotatedTest extends TestCase {
 

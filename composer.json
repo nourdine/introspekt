@@ -9,18 +9,17 @@
          "name": "nourdine"
       }
    ],
-   "require": {
-      "php": ">=7.4.3",
+   "require-dev": {
       "phpunit/phpunit": "^9.5"
    },
    "autoload": {
-      "psr-0": {
-         "introspekt": "src/"
+      "psr-4": {
+         "Introspekt\\": "src/"
       }
    },
    "scripts": {
-      "test": [
-         "vendor/bin/phpunit --testdox --debug"
-      ]
-  }
+      "test": {
+         "test": "phpunit ./test"
+      }
+   }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use introspekt\Introspekt;
+use Introspekt\Introspekt;
 use artifacts\Hacker;
 
 class TypeArrayAnnotationTest extends TestCase {
@@ -11,6 +11,6 @@ class TypeArrayAnnotationTest extends TestCase {
       $langs = $annotations->getAnnotation("@Languages");
       $this->assertTrue(3 === count($langs));
       $this->assertEquals("php", $langs[0]);
-      $this->assertEquals("javascript", $langs[2]);
+      $this->assertEquals("JavaScript", $langs[2]);
    }
 }

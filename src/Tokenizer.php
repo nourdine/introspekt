@@ -1,6 +1,6 @@
 <?php
 
-namespace introspekt;
+namespace Introspekt;
 
 class Tokenizer {
 

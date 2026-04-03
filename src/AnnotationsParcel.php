@@ -1,9 +1,9 @@
 <?php
 
-namespace introspekt;
+namespace Introspekt;
 
-use introspekt\exception\AnnotationNotFoundException;
-use introspekt\Tokenizer;
+use Introspekt\Exception\AnnotationNotFoundException;
+use Introspekt\Tokenizer;
 use RuntimeException;
 
 /**

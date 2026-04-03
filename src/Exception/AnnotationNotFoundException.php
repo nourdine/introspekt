@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace introspekt\exception;
+namespace Introspekt\Exception;
 
 use RuntimeException;
 

@@ -1,9 +1,9 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use introspekt\Introspekt;
+use Introspekt\Introspekt;
 use artifacts\Person;
-use introspekt\exception\AnnotationNotFoundException;
+use Introspekt\Exception\AnnotationNotFoundException;
 
 class MissingAnnotationTest extends TestCase {
 

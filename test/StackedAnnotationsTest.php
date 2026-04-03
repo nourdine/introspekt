@@ -1,13 +1,13 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use introspekt\Introspekt;
+use Introspekt\Introspekt;
 use artifacts\StackedNull;
 use artifacts\StackedString;
 use artifacts\StackedArray;
 use artifacts\StackedObject;
 
-class AnnotationStackingTest extends TestCase {
+class StackedAnnotationsTest extends TestCase {
 
    public function testStackingNulls() {
       $anno = Introspekt::get(new StackedNull());

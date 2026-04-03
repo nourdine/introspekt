@@ -43,7 +43,7 @@ class Person {
 
 /**
  * This is the class Hacker
- * @Languages(["php", "java", "javascript"])
+ * @Languages(["php", "java", "JavaScript"])
  */
 class Hacker {
 

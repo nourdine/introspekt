@@ -2,8 +2,8 @@
 
 use PHPUnit\Framework\TestCase;
 use artifacts\Hacker;
-use introspekt\AnnotationsParcel;
-use introspekt\Introspekt;
+use Introspekt\AnnotationsParcel;
+use Introspekt\Introspekt;
 
 class AnnotationsRetrievalTest extends TestCase {
 
