@@ -75,7 +75,7 @@ class Danger {}
 class StackedString {}
 
 /**
- * @Languages(["php", "java", "javascript"])
+ * @Languages(["php", "java", "JavaScript"])
  * @Languages(["python", "haskell"])
  * @Languages(["python", "haskell"])
  */

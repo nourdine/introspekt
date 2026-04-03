@@ -1,49 +1,51 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Introspekt;
 
-class Tokenizer {
-
-   const TOKENS = "/(@[\w-]+) *(\((.*?)\))?/s"; // s stands for PCRE_DOTALL
-
+class Tokenizer
+{
    private $annotations;
+   private $raw;
+
+
+   public function __construct(string $raw)
+   {
+      $this->raw = $raw;
+   }
 
    /**
     * Identify the tokens of ALL the annotations contained in a string (tipically a documentation comment block).
     * Allows annotations with the same name to be stacked on top of each other with NO REPEATED VALUES!
-    * 
-    * @param string $str
-    * @return array
     */
-   public function getAnnotationLanguageTokens($str) {
-
+   public function getAnnotationLanguageTokens(): array
+   {
       $this->annotations = [];
-      $matches = $this->pregMatchAll(self::TOKENS, $str);
-
+      $matches = $this->pregMatchAll($this->raw);
       if (count($matches[0]) > 0) {
-
          $annotationNames = $matches[1];
          $annotationValues = $matches[3];
-
          for ($i = 0; $i < count($matches[0]); $i++) {
-            $key = $annotationNames[$i];
-            $value = $this->normalizeValue($annotationValues[$i]);
-            $this->addAnnotation($key, $value);
+            $this->addAnnotation(
+               $annotationNames[$i], 
+               $this->normalizeValue($annotationValues[$i]));
          }
       }
-
       return $this->annotations;
    }
 
-   private function addAnnotation($key, $value) {
-      if (!key_exists($key, $this->annotations)) {
-         $this->annotations[$key] = $value;
+   private function addAnnotation(string $name, string $value): void
+   {
+      if (!key_exists($name, $this->annotations)) {
+         $this->annotations[$name] = $value;
       } else {
-         $this->mergeWithExistingValues($key, $value);
+         $this->mergeWithExistingValues($name, $value);
       }
    }
 
-   private function mergeWithExistingValues($key, $value) {
+   private function mergeWithExistingValues(string $key, string $value): void
+   {
       if (is_string($this->annotations[$key])) {
          if ($value !== $this->annotations[$key]) {
             $string = $this->annotations[$key];
@@ -57,19 +59,18 @@ class Tokenizer {
       }
    }
 
-   private function pregMatchAll($re, $str) {
-      $match = [];
-      preg_match_all($re, $str, $match);
+   private function pregMatchAll(string $str): array
+   {
+      $regxep = "/(@[\w-]+) *(\((.*?)\))?/s"; // s stands for PCRE_DOTALL
+      preg_match_all($regxep, $str, $match);
       return $match;
    }
 
    /**
-    * "Null", "null" (and uppercased/lowercased variations) and the empty string ("") must all be the same thing.
-    * 
-    * @param string $str
-    * @return string 
+    * "Null", "null" (and uppercased/lowercased variations) and the empty string ("") are turned into `null`
     */
-   private function normalizeValue($str) {
+   private function normalizeValue(string $str): string
+   {
       if ($str === "" || strtolower($str) === "null") {
          $str = "null";
       }
