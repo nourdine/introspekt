@@ -2,7 +2,7 @@
 
 namespace introspekt;
 
-use introspekt\exception\NoAnnotationFoundException;
+use introspekt\exception\AnnotationNotFoundException;
 use introspekt\Tokenizer;
 use RuntimeException;
 
@@ -41,7 +41,7 @@ class AnnotationsParcel {
    /**
     * Return the value of a certain annotation.
     * 
-    * @throws NoAnnotationFoundException
+    * @throws AnnotationNotFoundException
     * @param string $annotationName The name of the annotation to search for.
     * @param string $methodName The name of method to restric the annotation lookup to.
     * @return mixed The value of the annotation. It can be null, a string or an (associative) array.
@@ -49,7 +49,7 @@ class AnnotationsParcel {
    public function getAnnotation($annotationName, $methodName = null) {
 
       if (!$this->hasAnnotation($annotationName, $methodName)) {
-         throw new NoAnnotationFoundException($this->annotatedClassName, $annotationName, $methodName);
+         throw new AnnotationNotFoundException($this->annotatedClassName, $annotationName, $methodName);
       }
 
       $data = null;

@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use introspekt\Introspekt;
 use artifacts\Hacker;
-use introspekt\exception\NoAnnotationFoundException;
+use introspekt\exception\AnnotationNotFoundException;
 
 class MethodAnnotationTest extends TestCase {
 
@@ -26,7 +26,7 @@ class MethodAnnotationTest extends TestCase {
    }
 
    public function testMissingValue() {
-      $this->expectException(NoAnnotationFoundException::class);
+      $this->expectException(AnnotationNotFoundException::class);
 
       $annotations = Introspekt::get(new Hacker());
       $this->assertEquals($annotations->getAnnotation("@Nooooot", "hackit"));
