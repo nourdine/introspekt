@@ -8,9 +8,7 @@ namespace artifacts;
  * @B(["a", 1, "abc"])
  * @C
  */
-class MultiAnnotated {
-   
-}
+class MultiAnnotated {}
 
 /**
  * This is the class DBBean
@@ -18,66 +16,54 @@ class MultiAnnotated {
  * @Cool()
  * @Yeah(null)
  */
-class DBBean {
-   
-}
+class DBBean {}
 
 /**
  * @PI(3.14159)
  * @ShapeSides(5)
  */
-class Geometry {
-
-   public function doSomething() {
-      
-   }
+class Geometry
+{
+   public function doSomething() {}
 }
 
 /**
  * This is the class Person
  * @Name("Laurent")
  */
-class Person {
-   
-}
+class Person {}
 
 /**
  * This is the class Hacker
  * @Languages(["php", "java", "JavaScript"])
  */
-class Hacker {
-
+class Hacker
+{
    /**
     * @Target("microsoft")
     * @Technologies([
-     "telnet",
-     "python"
+         "telnet",
+         "python"
      ])
     */
-   function hackit() {
-      
-   }
+   function hackit() {}
 }
 
 /**
  * This is the class WebService
  * @ServiceData({
-  "URI": "http://www.something.com/api/",
-  "port": 8001,
-  "user": "fabs",
-  "passw": "hello123"
+      "URI": "http://www.something.com/api/",
+      "port": 8001,
+      "user": "fabs",
+      "passw": "hello123"
   })
  */
-class WebService {
-   
-}
+class WebService {}
 
 /**
  * @Email("admin@yahoo.com")
  */
-class Danger {
-   
-}
+class Danger {}
 
 /**
  * @Nationality("Italian")
@@ -86,18 +72,14 @@ class Danger {
  * @Nationality("English")
  * @Nationality("French")
  */
-class StackedString {
-   
-}
+class StackedString {}
 
 /**
  * @Languages(["php", "java", "javascript"])
  * @Languages(["python", "haskell"])
  * @Languages(["python", "haskell"])
  */
-class StackedArray {
-
-}
+class StackedArray {}
 
 /**
  * @Nill
@@ -105,15 +87,11 @@ class StackedArray {
  * @Nill(null)
  * @Nill(Null)
  */
-class StackedNull {
-   
-}
+class StackedNull {}
 
 /**
  * @QueryParam( { "name" : "fabs" } )
  * @QueryParam( { "surname" : "text" } )
  * @QueryParam( { "nationality" : "nowhere" } )
  */
-class StackedObject {
-
-}
+class StackedObject {}
