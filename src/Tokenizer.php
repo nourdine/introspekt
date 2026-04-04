@@ -24,7 +24,7 @@ class Tokenizer
       $matches = $this->pregMatchAll($this->raw);
       if (count($matches[0]) > 0) {
          $annotationNames = $matches[1];
-         $annotationValues = $matches[2];
+         $annotationValues = $this->stripWS($matches[2]);
          for ($i = 0; $i < count($matches[0]); $i++) {
             $this->addAnnotation(
                $annotationNames[$i],
@@ -75,5 +75,10 @@ class Tokenizer
          $str = "null";
       }
       return $str;
+   }
+
+   private function stripWS($str)
+   {
+      return preg_replace('/\s+(?=(?:[^"]*"[^"]*")*[^"]*$)/', '', $str);
    }
 }

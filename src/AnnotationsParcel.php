@@ -11,11 +11,11 @@ use RuntimeException;
  */
 class AnnotationsParcel
 {
-   private $annotatedClassName = "";
+   private $annotatedClassName;
    private $classAnnotations;
    private $methodsAnnotations;
 
-   public function __construct($docCommentHeader, array $docCommentsMethods, string $annotatedClassName)
+   public function __construct(string $docCommentHeader, array $docCommentsMethods, string $annotatedClassName)
    {
       $this->annotatedClassName = $annotatedClassName;
       $this->classAnnotations = (new Tokenizer($docCommentHeader))->getAnnotationLanguageTokens();
@@ -31,7 +31,7 @@ class AnnotationsParcel
     * @param string $methodName The name of method to restric the annotation lookup to.
     * @return boolean
     */
-   public function hasAnnotation($annotationName, $methodName = null)
+   public function hasAnnotation(string $annotationName, ?string $methodName = null)
    {
       return array_key_exists($annotationName, $this->retrieve($methodName));
    }
@@ -69,7 +69,6 @@ class AnnotationsParcel
 
    private function retrieve($method)
    {
-
       $annotations = $this->classAnnotations;
 
       if ($method !== null) {
