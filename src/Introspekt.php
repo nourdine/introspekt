@@ -1,56 +1,58 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Introspekt;
 
-use Introspekt\AnnotationsParcel;
 use ReflectionClass;
+use Introspekt\AnnotationsParcel;
 
 /**
  * Core class allowing introspection of annotated classes and objects.
  */
-abstract class Introspekt {
-
+abstract class Introspekt
+{
    static private $parcels = [];
 
    /**
-    * Get an AnnotationsParcel containing the annotations of a certain class.
+    * Return an AnnotationsParcel containing the annotations of a certain class.
     * 
-    * @param object|string $o An object or the name of a class
+    * @param object|string $source An object or the name of a class
     * @return AnnotationsParcel
     */
-   static public function get($o) {
+   static public function get(object|string $source): AnnotationsParcel
+   {
+      $className = null;
 
-      $cn = null;
-
-      if (is_object($o)) {
-         $cn = get_class($o);
-      } else if (is_string($o)) {
-         $cn = $o;
+      if (is_object($source)) {
+         $className = get_class($source);
+      } else if (is_string($source)) {
+         $className = $source;
       }
 
-      if (!array_key_exists($cn, self::$parcels)) {
-         $klass = new ReflectionClass($cn);
-         $parcel = new AnnotationsParcel($klass->getDocComment(), self::getMethodsDocComments($klass->getMethods()), $cn);
-         self::$parcels[$cn] = $parcel;
+      if (!array_key_exists($className, self::$parcels)) {
+         $klass = new ReflectionClass($className);
+         $parcel = new AnnotationsParcel(
+            $klass->getDocComment(),
+            self::getMethodsDocComments($klass->getMethods()),
+            $className);
+         self::$parcels[$className] = $parcel;
       }
 
-      return self::$parcels[$cn];
+      return self::$parcels[$className];
    }
 
-   /**
-    * Getter for testing purposes
-    */
-   static public function getAnnotationsParcels() {
-      return self::$parcels;
+   static public function countAnnotationsParcels(): int
+   {
+      return count(self::$parcels);
    }
 
-   static private function getMethodsDocComments(array $methods) {
+   static private function getMethodsDocComments(array $methods): array
+   {
       $docComments = [];
-
       foreach ($methods as $m) {
          $docComments[$m->getName()] = $m->getDocComment();
       }
-
       return $docComments;
    }
 }

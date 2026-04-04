@@ -27,8 +27,9 @@ class Tokenizer
          $annotationValues = $matches[2];
          for ($i = 0; $i < count($matches[0]); $i++) {
             $this->addAnnotation(
-               $annotationNames[$i], 
-               $this->normalizeValue($annotationValues[$i]));
+               $annotationNames[$i],
+               $this->normalizeValue($annotationValues[$i])
+            );
          }
       }
       return $this->annotations;
@@ -60,7 +61,7 @@ class Tokenizer
 
    private function pregMatchAll(string $str): array
    {
-      $pattern = '/(@[A-Za-z0-9_\-]+)\s*(?:\((.*?)\))?/s';      
+      $pattern = '/(@[A-Za-z0-9_\-]+)\s*(?:\((.*?)\))?/s';
       preg_match_all($pattern, $str, $match);
       return $match;
    }

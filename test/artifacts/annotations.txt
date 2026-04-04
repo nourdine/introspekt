@@ -10,7 +10,7 @@ YO!
 
     @B            ("yo")
 
-
+uncaught-> ("ya") <-uncaught
 
 Ciaooooo @C @D 
 
@@ -18,7 +18,7 @@ Ciaooooo @C @D
 +@E  (
     
     
-    {   "name": "fab s",
+    {   "name": "wab s",
    "lang": "it" 
 })
 
@@ -39,3 +39,10 @@ whatever... irrelevant
     
     
     ])
+
++@Y  (
+        {
+            "name": ["n", "o", "u"],
+            "lang": 1
+        }
+    )

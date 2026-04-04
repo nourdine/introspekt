@@ -129,7 +129,7 @@ $annotatedHal = Introspekt::get("AI");
 // and now do cool things as above ...
 ```
 
-If your classes are namespaced (who doesn't use namespaces these days?) you have to specify the **fully qualified name of the class**, namely the class's name preceded by the full namespace.
+If your classes are namespaced (who doesn't use namespaces these days?) you have to specify the **fully qualified name of the class**, namely the class name preceded by the full namespace.
 
 In this very case you might need to double-escape certain backslashes that would otherwise be interpreted as _new line_ or _return_ characters (or anythig else of that sort). Suppose in fact you were trying to access the namespaced class `package\name\Foo`. As you can see there is a `\n` (newline) in the fully-qualified name of the class and that would cause a problem to the interpreter. Therefore, this is how you must escape the backslash symbols in order for the script to work:
 

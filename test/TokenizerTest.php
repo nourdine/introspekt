@@ -20,7 +20,7 @@ class TokenizerTest extends TestCase
 
    public function testTokensNumber()
    {
-      $this->assertEquals(9, count($this->tokens));
+      $this->assertEquals(10, count($this->tokens));
    }
 
    public function testTokensNames()
@@ -31,6 +31,7 @@ class TokenizerTest extends TestCase
       $this->assertTrue(array_key_exists("@D", $this->tokens));
       $this->assertTrue(array_key_exists("@E", $this->tokens));
       $this->assertTrue(array_key_exists("@X", $this->tokens));
+      $this->assertTrue(array_key_exists("@Y", $this->tokens));
       $this->assertTrue(array_key_exists("@Z1", $this->tokens));
       $this->assertTrue(array_key_exists("@Z_2", $this->tokens));
       $this->assertTrue(array_key_exists("@Z-3", $this->tokens));
@@ -44,6 +45,7 @@ class TokenizerTest extends TestCase
       $this->assertTrue(is_string($this->tokens["@D"]));
       $this->assertTrue(is_string($this->tokens["@E"]));
       $this->assertTrue(is_string($this->tokens["@X"]));
+      $this->assertTrue(is_string($this->tokens["@Y"]));
       $this->assertTrue(is_string($this->tokens["@Z1"]));
       $this->assertTrue(is_string($this->tokens["@Z_2"]));
    }
@@ -56,9 +58,12 @@ class TokenizerTest extends TestCase
       $this->assertEquals("null", $this->tokens["@C"]);
       $this->assertEquals("null", $this->tokens["@D"]);
       $this->assertEquals(
-         '{"name":"fab s","lang":"it"}',
+         '{"name":"wab s","lang":"it"}',
          stripWS($this->tokens["@E"]));
       $this->assertEquals("null", $this->tokens["@X"]);
+      $this->assertEquals(
+         '{"name":["n","o","u"],"lang":1}',
+         stripWS($this->tokens["@Y"]));
       $this->assertEquals("null", $this->tokens["@Z1"]);
       $this->assertEquals("null", $this->tokens["@Z_2"]);
       $this->assertEquals(
