@@ -54,11 +54,6 @@ class Hacker
 class WebService {}
 
 /**
- * @Email("admin@something.blabla")
- */
-class Danger {}
-
-/**
  * @Nationality("Italian")
  * @Nationality("English")
  * @Nationality("English")
