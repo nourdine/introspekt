@@ -8,6 +8,6 @@ class DangerouslyAnnotatedTest extends TestCase {
 
    public function testDangerousAnnotationValues() {
       $annotations = Introspekt::get(new Danger());
-      $this->assertEquals("admin@yahoo.com", $annotations->getAnnotation("@Email"));
+      $this->assertEquals("admin@something.blabla", $annotations->getAnnotation("@Email"));
    }
 }

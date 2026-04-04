@@ -3,7 +3,6 @@
 namespace artifacts;
 
 /**
- * This is a comment
  * @A("hello")
  * @B(["a", 1, "abc"])
  * @C
@@ -11,7 +10,6 @@ namespace artifacts;
 class MultiAnnotated {}
 
 /**
- * This is the class DBBean
  * @Persisted
  * @Cool()
  * @Yeah(null)
@@ -28,13 +26,11 @@ class Geometry
 }
 
 /**
- * This is the class Person
  * @Name("Laurent")
  */
 class Person {}
 
 /**
- * This is the class Hacker
  * @Languages(["php", "java", "JavaScript"])
  */
 class Hacker
@@ -50,18 +46,15 @@ class Hacker
 }
 
 /**
- * This is the class WebService
  * @ServiceData({
-      "URI": "http://www.something.com/api/",
-      "port": 8001,
-      "user": "fabs",
-      "passw": "hello123"
+      "URI": "http://www.something.blabla/api/",
+      "port": 8080
   })
  */
 class WebService {}
 
 /**
- * @Email("admin@yahoo.com")
+ * @Email("admin@something.blabla")
  */
 class Danger {}
 
@@ -90,8 +83,9 @@ class StackedArray {}
 class StackedNull {}
 
 /**
- * @QueryParam( { "name" : "fabs" } )
- * @QueryParam( { "surname" : "text" } )
+ * @QueryParam( { "name" : "Nou" } )
+ * @QueryParam( { "surname" : "White" } )
+ * @QueryParam( { "surname" : "White" } )
  * @QueryParam( { "nationality" : "nowhere" } )
  */
 class StackedObject {}
