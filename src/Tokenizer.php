@@ -9,7 +9,6 @@ class Tokenizer
    private $annotations;
    private $raw;
 
-
    public function __construct(string $raw)
    {
       $this->raw = $raw;
@@ -25,7 +24,7 @@ class Tokenizer
       $matches = $this->pregMatchAll($this->raw);
       if (count($matches[0]) > 0) {
          $annotationNames = $matches[1];
-         $annotationValues = $matches[3];
+         $annotationValues = $matches[2];
          for ($i = 0; $i < count($matches[0]); $i++) {
             $this->addAnnotation(
                $annotationNames[$i], 
@@ -48,8 +47,8 @@ class Tokenizer
    {
       if (is_string($this->annotations[$key])) {
          if ($value !== $this->annotations[$key]) {
-            $string = $this->annotations[$key];
-            $this->annotations[$key] = [$string, $value];
+            $old = $this->annotations[$key];
+            $this->annotations[$key] = [$old, $value];
          }
       } else {
          // it's already an array
@@ -61,8 +60,8 @@ class Tokenizer
 
    private function pregMatchAll(string $str): array
    {
-      $regxep = "/(@[\w-]+) *(\((.*?)\))?/s"; // s stands for PCRE_DOTALL
-      preg_match_all($regxep, $str, $match);
+      $pattern = '/(@[A-Za-z0-9_\-]+)\s*(?:\((.*?)\))?/s';      
+      preg_match_all($pattern, $str, $match);
       return $match;
    }
 

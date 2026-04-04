@@ -1,24 +1,24 @@
-introspekt
+Introspekt
 ==========
 
 ### 1. Intro
 
-**introspekt** is an **annotations** library for php.
+**Introspekt** is an **annotations** library for php.
 
-Annotations allow to add information (matadata) to classes and methods that can then be used at runtime to modify the behaviour of such entities.
+Annotations allow to add metadata to classes and methods that can then be used at runtime to modify the behaviour of such entities.
 
 ### 2. It's all in the DocBlocks
 
-Introspekt annotations needs to be defined inside the [DocBlock](http://en.wikipedia.org/wiki/PHPDoc#DocBlock) of a class or method. Here's an example of a DocBlock in php:
+Introspekt annotations need to be defined inside the [DocBlock](http://en.wikipedia.org/wiki/PHPDoc#DocBlock) of a class or method. Here's an example of a DocBlock in php:
 
 ```php
 /**
- * This is a documentation block! Not yet an annotation though :(
+ * This is a documentation block. Not yet an annotation though :(
  */
 class Foo { }
 ```
 
-Obviously,  that doesn't contain any annotation yet. Here's what a simple string annotations would look like:
+Obviously, that doesn't contain any annotation yet. Here's what a simple string annotations would look like:
 
 ```php
 /**
@@ -27,13 +27,13 @@ Obviously,  that doesn't contain any annotation yet. Here's what a simple string
 class Foo { }
 ```
 
-Now let's see what are the types of permitted annotations and then move on to see (in paragraph 4) how they can be retrieved and used programmatically.
+Now let's talk about the supported types of Introspekt annotations and then move on to see (in paragraph 4) how they can be retrieved and used programmatically.
 
 ### 3. Types and scopes
 
-There are 4 types of annotations allowed in _introspekt_:
+There are four allowed types of annotations:
 
-  1. **Null annotations (or marker annotations as they are called in java):** the value contained by this type od annotations is `null`. It can assume the following forms: 
+  1. **Null annotations (or marker annotations as they are called in java):** the value contained by this type of annotations is `null` and can have the following forms:
 
 ```php
 /**
@@ -44,7 +44,7 @@ There are 4 types of annotations allowed in _introspekt_:
 class Foo { }
 ```
 
-  2. **String annotations:** the value contained by this type of annotations is of type `string`: Here's an example: 
+  2. **String annotations:** the value contained by this type of annotation is of type `string`. Here's an example:
 
 ```php
 /**
@@ -53,7 +53,7 @@ class Foo { }
 class Foo { }
 ```
 
-  3. **Array annotations:** the value contained by this type of annotations is of type `array` (non associative): Here's an example: 
+  3. **Array annotations:** the value contained by this type of annotation is of type `array` (non associative). Here's an example:
 
 ```php
 /**
@@ -62,15 +62,14 @@ class Foo { }
 class Foo { }
 ```
 
-  4. **Associative Array annotations:** the value contained by this type of annotations is of type `array` (associative): Here's an example: 
+  4. **Associative Array annotations:** the value contained by this type of annotation is of type `array` (associative). Here's an example: 
 
 ```php
 /**
  * @MyAnnotation({
       "name": "nourdine",
-      "age": "19",
       "languages": [
-         "JavaScript,
+         "JavaScript",
          "php",
          "java"
       ]
@@ -79,14 +78,14 @@ class Foo { }
 class Foo { }
 ```
 
-**Note:** When using arrays (associative and non) you are allowed to indent your annotation's code (instead of singleline it) provided that you **DO NOT** use the "asterisk" character at the beginning of each new line.
+**Note:** When using arrays (associative and non) you are allowed to indent your annotation's code (instead of singleline it) provided that you **DO NOT** use the asterisk character (`*`) at the beginning of each new line.
 
 Finally, let's quickly point out how there are just two scopes you can target with your annotations:
   
-  * class scope
-  * method scope
+  * Class scope
+  * Method scope
   
-  Here's some code sample that shows the two possible cases:
+Here's some code that shows the two options:
 
 ```php
 /**
@@ -97,7 +96,7 @@ class AI {
    /**
     * @Default(42)
     */
-   public function answer(Context $c) {
+   public function answer() {
       
    } 
 }
@@ -105,14 +104,14 @@ class AI {
 
 ### 4. Retrieve and use annotations
 
-Now let's see how we can practically access information contained in annotations. To gain access to them, you need to obtain a `nourdine\introspekt\AnnotationsParcel` object containing a representation of the annotated data.
+To gain access to our annotations, we need to obtain a `Introspekt\AnnotationsParcel` object containing a representation of the annotated data.
 
 There are two possible ways to do this:
 
-  1. Via an instance of the annotted class 
+  1. Via an instance of the annotted class
   2. Using the name of the class
 
-Here's an example of the first type of access (we will use the class `AI` for ease of exposition):
+Here's an example of the first type of access (we will use the class `AI` defined above for ease of exposition):
 
 ```php
 $hal = new AI();
@@ -123,20 +122,22 @@ $annotatedHal->getAnnotation("@Author"); // return "Nourdine": this is a class a
 $annotatedHal->getAnnotation("@Default", "answer"); // return 42 - this is a method annotation
 ```
 
-The second access technique we mentioned (access through the class name) requires that you specify the _name_ of the class:
+The second access technique (access through the class name) requires that you specify the _name_ of the class itself:
 
 ```php
 $annotatedHal = Introspekt::get("AI");
 // and now do cool things as above ...
 ```
 
-if your classes are namespaced (who doesn't use namespaces these days?) you have to specify the **fully qualified name of the class**, namely the class's name preceded by the full namespace. In this very case you might need to double-escape certain backslashes that would otherwise be interpreted as _new line_ or _return_ characters (or anythig else of that sort). Suppose in fact you were trying to access the namespaced class `Nourdine\Recursion\Foo`. As you can see there is a `\n` (newline) in the fully-qualified name of the class and that would cause a problem to the interpreter. Therefore, this is how you must escape the backslash symbols in order for the script to work:
+If your classes are namespaced (who doesn't use namespaces these days?) you have to specify the **fully qualified name of the class**, namely the class's name preceded by the full namespace.
+
+In this very case you might need to double-escape certain backslashes that would otherwise be interpreted as _new line_ or _return_ characters (or anythig else of that sort). Suppose in fact you were trying to access the namespaced class `package\name\Foo`. As you can see there is a `\n` (newline) in the fully-qualified name of the class and that would cause a problem to the interpreter. Therefore, this is how you must escape the backslash symbols in order for the script to work:
 
 ```php
-$annotatedFoo = Introspekt::get("Nourdine\\Recursion\\Foo");
+$annotatedFoo = Introspekt::get("package\\name\\Foo");
 ```
 
-Finally remember that trying to access a non-existing annotation (both at the class or at the method's level) results in a `AnnotationNotFoundException` exception being thrown. Have a look: 
+Finally, remember that trying to access a non-existing annotation (both at the class or at the method's level) results in a `Introspekt\AnnotationNotFoundException` exception being thrown. Have a look: 
 
 ```php
 try {
@@ -148,26 +149,39 @@ try {
 
 ### 5. Stacked annotations
 
-When adding a certain annotation multiple times to a class or a method you get what we call a "stacked annotation". This will result in an array containg the different values you assigned to that annotation. So for instance you will have that:
+When adding a certain annotation multiple times to a class or a method you get what we call a _stacked annotation_. This will result in an array containg the different values you assigned to that annotation. So for instance you will have that:
 
 ```php
 /**
- * @Name("Fabs")
- * @Name("Sbaf")
+ * @Name("Nourdine")
+ * @Name("Enidruon")
  */
 class Foo {
 
 }
 
 $annotated = Introspekt::get("Foo");
-$annotated->getAnnotation("@Name"); // this will return ["Fabs", "Sbaf"]
+$annotated->getAnnotation("@Name"); // this will return ["Nourdine", "Enidruon"]
 ```
 
-In some cases this feature con be really useful. Also bear in mind that **repeated values won't be stacked together** and only a single instance of the value will be recorded.
+In some cases this feature con be really useful. Also bear in mind that **repeated values won't be stacked together** and only a single instance of the value will be recorded:
+
+```php
+/**
+ * @Name("Nourdine")
+ * @Name("Nourdine")
+ */
+class Foo {
+
+}
+
+$annotated = Introspekt::get("Foo");
+$annotated->getAnnotation("@Name"); // this will return "Nourdine"
+```
 
 ### 6. Format your JSON annotations well!
 
-Because _introspekt_ interbally relies on the usage of [json_decode](http://ch2.php.net/manual/en/function.json-decode.php), you have to remember to carefully format your JSON annotation values.
+Because Introspekt interbally relies on the usage of [json_decode](http://ch2.php.net/manual/en/function.json-decode.php), you have to remember to carefully format your JSON annotation values.
 
 Here's [an excerpt taken from php.net](http://www.php.net/manual/en/function.json-decode.php#example-3422) that shows possible issues related to the way you will format your JSON annotations:
 

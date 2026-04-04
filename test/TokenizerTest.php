@@ -5,6 +5,10 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 use Introspekt\Tokenizer;
 
+function stripWS($str) {
+   return preg_replace('/\s+(?=(?:[^"]*"[^"]*")*[^"]*$)/', '', $str);
+}
+
 class TokenizerTest extends TestCase
 {
    private $tokens = null;
@@ -16,7 +20,7 @@ class TokenizerTest extends TestCase
 
    public function testTokensNumber()
    {
-      $this->assertEquals(10, count($this->tokens));
+      $this->assertEquals(9, count($this->tokens));
    }
 
    public function testTokensNames()
@@ -28,9 +32,8 @@ class TokenizerTest extends TestCase
       $this->assertTrue(array_key_exists("@E", $this->tokens));
       $this->assertTrue(array_key_exists("@X", $this->tokens));
       $this->assertTrue(array_key_exists("@Z1", $this->tokens));
-      $this->assertTrue(array_key_exists("@Z2", $this->tokens));
-      $this->assertTrue(array_key_exists("@Z_3", $this->tokens));
-      $this->assertTrue(array_key_exists("@Z-4", $this->tokens));
+      $this->assertTrue(array_key_exists("@Z_2", $this->tokens));
+      $this->assertTrue(array_key_exists("@Z-3", $this->tokens));
    }
 
    public function testTokensType()
@@ -38,13 +41,28 @@ class TokenizerTest extends TestCase
       $this->assertTrue(is_array($this->tokens["@A"]));
       $this->assertTrue(is_string($this->tokens["@B"]));
       $this->assertTrue(is_string($this->tokens["@C"]));
-      
+      $this->assertTrue(is_string($this->tokens["@D"]));
+      $this->assertTrue(is_string($this->tokens["@E"]));
+      $this->assertTrue(is_string($this->tokens["@X"]));
+      $this->assertTrue(is_string($this->tokens["@Z1"]));
+      $this->assertTrue(is_string($this->tokens["@Z_2"]));
    }
 
    public function testTokensValues()
    {
       $this->assertEquals('"hello " ', $this->tokens["@A"][0]);
       $this->assertEquals('"ciao"', $this->tokens["@A"][1]);
+      $this->assertEquals('"yo"', $this->tokens["@B"]);
       $this->assertEquals("null", $this->tokens["@C"]);
+      $this->assertEquals("null", $this->tokens["@D"]);
+      $this->assertEquals(
+         '{"name":"fab s","lang":"it"}',
+         stripWS($this->tokens["@E"]));
+      $this->assertEquals("null", $this->tokens["@X"]);
+      $this->assertEquals("null", $this->tokens["@Z1"]);
+      $this->assertEquals("null", $this->tokens["@Z_2"]);
+      $this->assertEquals(
+         '["yo","dude"]',
+          stripWS($this->tokens["@Z-3"]));
    }
 }
