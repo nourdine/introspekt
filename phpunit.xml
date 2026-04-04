@@ -1,2 +1,7 @@
 <phpunit bootstrap="test/bootstrap.php">
+    <coverage>
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+    </coverage>
 </phpunit>

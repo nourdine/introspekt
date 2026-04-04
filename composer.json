@@ -2,7 +2,10 @@
    "name": "nourdine/introspekt",
    "type": "library",
    "description": "A library allowing the usage of class and methods annotations in json format",
-   "keywords": ["json", "annotations"],
+   "keywords": [
+      "json",
+      "annotations"
+   ],
    "license": "MIT",
    "authors": [
       {
@@ -18,8 +21,7 @@
       }
    },
    "scripts": {
-      "test": {
-         "test": "phpunit ./test"
-      }
+      "test": "phpunit ./test",
+      "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text ./test"
    }
 }
