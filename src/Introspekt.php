@@ -33,9 +33,10 @@ abstract class Introspekt
       if (!array_key_exists($className, self::$parcels)) {
          $klass = new ReflectionClass($className);
          $parcel = new AnnotationsParcel(
-            $klass->getDocComment(),
-            self::getMethodsDocComments($klass->getMethods()),
-            $className);
+            self::getClassDocComment($klass),
+            self::getMethodsDocComments($klass),
+            $className
+         );
          self::$parcels[$className] = $parcel;
       }
 
@@ -47,8 +48,15 @@ abstract class Introspekt
       return count(self::$parcels);
    }
 
-   static private function getMethodsDocComments(array $methods): array
+   static private function getClassDocComment(ReflectionClass $klass): string
    {
+      $docComment = $klass->getDocComment();
+      return $docComment === false ? "" : $docComment;
+   }
+
+   static private function getMethodsDocComments(ReflectionClass $klass): array
+   {
+      $methods = $klass->getMethods();
       $docComments = [];
       foreach ($methods as $m) {
          $docComments[$m->getName()] = $m->getDocComment();

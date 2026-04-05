@@ -7,7 +7,7 @@ use artifacts\Hacker;
 use Introspekt\AnnotationsParcel;
 use Introspekt\Introspekt;
 
-class AnnotationsRetrievalTest extends TestCase
+class AnnotationRetrievalTest extends TestCase
 {
    public function testRetrievalUsingObject()
    {

@@ -30,7 +30,13 @@ class Geometry
 /**
  * @Name("Laurent")
  */
-class Person {}
+class Person
+{
+   /**
+    * @Surname("White")
+    */
+   public function getSurname() {}
+}
 
 /**
  * @Languages(["php", 
@@ -87,3 +93,8 @@ class StackedNull {}
  * @QueryParam( { "nationality" : "nowhere" } )
  */
 class StackedObject {}
+
+class NotAnnotated
+{
+   public function greet() {}
+}

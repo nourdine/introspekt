@@ -4,80 +4,74 @@ namespace Introspekt;
 
 use Introspekt\Exception\AnnotationNotFoundException;
 use Introspekt\Tokenizer;
-use RuntimeException;
 
 /**
  * Storage for the annotations contained in a string (typically a documentation block).
  */
 class AnnotationsParcel
 {
-   private $annotatedClassName;
-   private $classAnnotations;
-   private $methodsAnnotations;
+   private string $annotatedClassName;
+   private array $classAnnotations;
+   private array $methodsAnnotations;
 
-   public function __construct(string $docCommentHeader, array $docCommentsMethods, string $annotatedClassName)
+   public function __construct(string $docCommentClass, array $docCommentsMethods, string $annotatedClassName)
    {
       $this->annotatedClassName = $annotatedClassName;
-      $this->classAnnotations = (new Tokenizer($docCommentHeader))->getAnnotationLanguageTokens();
+      $this->classAnnotations = (new Tokenizer($docCommentClass))->getAnnotationLanguageTokens();
       foreach ($docCommentsMethods as $methodName => $methodDocComment) {
          $this->methodsAnnotations[$methodName] = (new Tokenizer($methodDocComment))->getAnnotationLanguageTokens();
       }
    }
 
-   /**
-    * Check if a certain annotation exists.
-    * 
-    * @param string $annotationName
-    * @param string $methodName The name of method to restric the annotation lookup to.
-    * @return boolean
-    */
-   public function hasAnnotation(string $annotationName, ?string $methodName = null)
+   public function hasAnnotation(string $annotationName, ?string $methodName = null): bool
    {
-      return array_key_exists($annotationName, $this->retrieve($methodName));
+      $context = $this->getLookUpContext($methodName);
+      if ($context !== null && array_key_exists($annotationName, $context)) {
+         return true;
+      }
+      return false;
    }
 
    /**
-    * Return the value of a certain annotation.
+    * Return the value of a given annotation.
     * 
     * @throws AnnotationNotFoundException
-    * @param string $annotationName The name of the annotation to search for.
-    * @param string $methodName The name of method to restric the annotation lookup to.
-    * @return mixed The value of the annotation. It can be null, a string or an (associative) array.
     */
-   public function getAnnotation($annotationName, $methodName = null)
+   public function getAnnotation($annotationName, $methodName = null): mixed
    {
-
-      if (!$this->hasAnnotation($annotationName, $methodName)) {
+      if (
+         $this->getLookUpContext($methodName) === null ||
+         !$this->hasAnnotation($annotationName, $methodName)
+      ) {
          throw new AnnotationNotFoundException($this->annotatedClassName, $annotationName, $methodName);
       }
 
       $data = null;
-      $annotations = $this->retrieve($methodName);
-      $json = $annotations[$annotationName];
+      $annotations = $this->getLookUpContext($methodName);
+      $raw = $annotations[$annotationName];
 
-      if (is_string($json)) {
-         $data = json_decode($json, true);
+      if (is_string($raw)) {
+         $data = json_decode($raw, true);
       } else {
-         // Stacked case! 1 key -> array of json strings
+         // This is the stacked case: annotation name (e.g.: @Whatever) -> array of json strings
          $data = array_map(function ($s) {
             return json_decode($s, true);
-         }, $json);
+         }, $raw);
       }
 
       return $data;
    }
 
-   private function retrieve($method)
+   private function getLookUpContext($method): ?array
    {
-      $annotations = $this->classAnnotations;
-
       if ($method !== null) {
-         if (is_null($this->methodsAnnotations) || !array_key_exists($method, $this->methodsAnnotations)) {
-            throw new RuntimeException("The method " . $method . " does not exist");
+         if ($this->methodsAnnotations && array_key_exists($method, $this->methodsAnnotations)) {
+            return $this->methodsAnnotations[$method];
+         } else {
+            return null;
          }
-         $annotations = $this->methodsAnnotations[$method];
+      } else {
+         return $this->classAnnotations;
       }
-
-      return $annotations;
    }
 }
