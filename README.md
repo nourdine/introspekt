@@ -44,11 +44,13 @@ There are four allowed types of annotations:
 class Foo { }
 ```
 
-  2. **String annotations:** the value contained by this type of annotation is of type `string`. Here's an example:
+  2. **Primitive type annotations:** the value contained by this type of annotation is of type `string|bool|integer`. Here's an example:
 
 ```php
 /**
- * @MyAnnotation("nourdine")
+ * @MyNAme("nourdine")
+ * @MyAge(18)
+ * @MyHeight(175.33)
  */
 class Foo { }
 ```

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace artifacts;
 
 /**
@@ -14,7 +16,7 @@ class MultiAnnotated {}
  * @Cool()
  * @Yeah(null)
  */
-class DBBean {}
+class Entity {}
 
 /**
  * @PI(3.14159)
@@ -31,7 +33,8 @@ class Geometry
 class Person {}
 
 /**
- * @Languages(["php", "java", "JavaScript"])
+ * @Languages(["php", 
+       "java",       "JavaScript"     ]     )
  */
 class Hacker
 {
@@ -40,7 +43,7 @@ class Hacker
     * @Technologies([
          "telnet",
          "python"
-     ])
+      ])
     */
    function hackit() {}
 }
