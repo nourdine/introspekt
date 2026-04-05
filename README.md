@@ -98,7 +98,7 @@ class AI {
    /**
     * @Default(42)
     */
-   public function answer() {
+   public function getAnswer() {
       
    } 
 }
@@ -121,7 +121,24 @@ $hal = new AI();
 $annotatedHal = Introspekt::get($hal);
 // and now do cool things ...
 $annotatedHal->getAnnotation("@Author"); // return "Nourdine": this is a class annotation 
-$annotatedHal->getAnnotation("@Default", "answer"); // return 42 - this is a method annotation
+$annotatedHal->getAnnotation("@Default", "getAnswer"); // return 42 - this is a method annotation
+```
+
+More interestingly, we could refactor the `AI` class in order to use the annotations from the inside. Like so:
+
+```php
+/**
+ * @Author("Nourdine")
+ */
+class AI {
+   
+   /**
+    * @Default(42)
+    */
+   public function getAnswer() {
+      return (Introspekt::get($this))->getAnnotation("@Default", "getAnswer");
+   } 
+}
 ```
 
 The second access technique (access through the class name) requires that you specify the _name_ of the class itself:
