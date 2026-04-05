@@ -14,4 +14,6 @@ class MissingAnnotationTest extends TestCase
       $this->expectException(AnnotationNotFoundException::class);
       Introspekt::get(new Person())->getAnnotation("@Not");
    }
+
+   // TODO test it at the method level as well
 }

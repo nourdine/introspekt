@@ -7,7 +7,7 @@ Introspekt
 
 Annotations allow to add metadata to classes and methods that can then be used at runtime to modify the behaviour of such entities.
 
-### 2. It's all in the DocBlocks
+### 2. It's all in the DocBlocks!
 
 Introspekt annotations need to be defined inside the [DocBlock](http://en.wikipedia.org/wiki/PHPDoc#DocBlock) of a class or method. Here's an example of a DocBlock in php:
 
@@ -44,11 +44,11 @@ There are four allowed types of annotations:
 class Foo { }
 ```
 
-  2. **Primitive type annotations:** the value contained by this type of annotation is of type `string|bool|integer`. Here's an example:
+  2. **Primitive type annotations:** the value contained by this type of annotation is of type `string|integer|double`. Here's an example:
 
 ```php
 /**
- * @MyNAme("nourdine")
+ * @MyName("nourdine")
  * @MyAge(18)
  * @MyHeight(175.33)
  */
