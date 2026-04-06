@@ -223,5 +223,5 @@ json_decode($bad_json); // null
 
 ```
 composer install
-composer run-script test
+composer test
 ```
