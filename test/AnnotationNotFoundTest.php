@@ -28,13 +28,13 @@ class AnnotationNotFoundTest extends TestCase
       Introspekt::get(new Person())->getAnnotation("@Name", "not");
    }
 
-   public function testRetrievalWhenClassIsNotAtAllAnnotated()
+   public function testRetrievalWhenDocBlockIsMissingAtClassLevel()
    {
       $this->expectException(AnnotationNotFoundException::class);
       Introspekt::get(new NotAnnotated())->getAnnotation("@Greeting");
    }
 
-   public function testRetrievalWhenMethodIsNotAtAllAnnotated()
+   public function testRetrievalWhenDocBlockIsMissingAtMethodLevel()
    {
       $this->expectException(AnnotationNotFoundException::class);
       Introspekt::get(new NotAnnotated())->getAnnotation("@Greeting", "greet");

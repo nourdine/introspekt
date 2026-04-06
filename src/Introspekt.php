@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Introspekt;
 
 use ReflectionClass;
-use Introspekt\AnnotationsParcel;
+use Introspekt\Output\AnnotationsParcel;
 
 /**
  * Core class allowing introspection of annotated classes and objects.

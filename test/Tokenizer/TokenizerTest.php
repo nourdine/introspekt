@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Introspekt\Tokenizer;
+use Introspekt\Tokenizer\Tokenizer;
 
 class TokenizerTest extends TestCase
 {
@@ -11,7 +11,7 @@ class TokenizerTest extends TestCase
 
    public function setUp(): void
    {
-      $this->tokens = (new Tokenizer(file_get_contents(__DIR__ . "/artifacts/annotations.txt")))->getAnnotationLanguageTokens();
+      $this->tokens = (new Tokenizer(file_get_contents(__DIR__ . "/../artifacts/annotations.txt")))->getAnnotationLanguageTokens();
    }
 
    public function testTokensNumber()

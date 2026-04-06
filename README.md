@@ -5,7 +5,7 @@ Introspekt
 
 **Introspekt** is an **annotations** library for php.
 
-Annotations allow to add metadata to classes and methods that can then be used at runtime to modify the behaviour of such entities.
+Annotations allow programmers to add metadata to classes and methods. Such bits of information can then be used at runtime to modify the software behaviour.
 
 ### 2. It's all in the DocBlocks!
 

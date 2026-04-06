@@ -1,9 +1,9 @@
 <?php
 
-namespace Introspekt;
+namespace Introspekt\Output;
 
 use Introspekt\Exception\AnnotationNotFoundException;
-use Introspekt\Tokenizer;
+use Introspekt\Tokenizer\Tokenizer;
 
 /**
  * Storage for the annotations contained in a string (typically a documentation block).

@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 use Introspekt\Introspekt;
-use artifacts\Hacker;
+use artifacts\Person;
 
 class TypeArrayAnnotationTest extends TestCase
 {
    public function testRetrievedValue()
    {
-      $annotations = Introspekt::get(new Hacker());
-      $langs = $annotations->getAnnotation("@Languages");
-      $this->assertEquals("array", gettype($langs));
-      $this->assertTrue(3 === count($langs));
-      $this->assertEquals("php", $langs[0]);
-      $this->assertEquals("java", $langs[1]);
-      $this->assertEquals("JavaScript", $langs[2]);
+      $annotations = Introspekt::get(new Person());
+      $nationalities = $annotations->getAnnotation("@Nationality");
+      $this->assertEquals("array", gettype($nationalities));
+      $this->assertTrue(2 === count($nationalities));
+      $this->assertEquals("British", $nationalities[0]);
+      $this->assertEquals("French", $nationalities[1]);
    }
 }

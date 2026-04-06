@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 use Introspekt\Introspekt;
-use artifacts\Hacker;
+use artifacts\Person;
 use artifacts\WebService;
 
 /**
  * @runTestsInSeparateProcesses
  */
-class ParcelInstanciesTest extends TestCase
+class InstancesOfAnnotationParcelTest extends TestCase
 {
    public function testAnnotationsParcelsOfTheSameClassIsASingleInstance()
    {
-      Introspekt::get(new Hacker);
-      Introspekt::get(new Hacker);
-      Introspekt::get(new Hacker);
+      Introspekt::get(new Person);
+      Introspekt::get(new Person);
+      Introspekt::get(new Person);
       $this->assertEquals(1, Introspekt::countAnnotationsParcels());
 
       Introspekt::get(new WebService());

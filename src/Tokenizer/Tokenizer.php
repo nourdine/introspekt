@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Introspekt;
+namespace Introspekt\Tokenizer;
 
 class Tokenizer
 {

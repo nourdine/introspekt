@@ -13,6 +13,6 @@ class TypeStringAnnotationTest extends TestCase
       $annotations = Introspekt::get(new Person());
       $name = $annotations->getAnnotation("@Name");
       $this->assertEquals("string", gettype($name));
-      $this->assertEquals("Laurent", $name);
+      $this->assertEquals("Foo", $name);
    }
 }

@@ -28,7 +28,8 @@ class Geometry
 }
 
 /**
- * @Name("Laurent")
+ * @Name("Foo")
+ * @Nationality(["British", "French"])
  */
 class Person
 {
@@ -36,22 +37,6 @@ class Person
     * @Surname("White")
     */
    public function getSurname() {}
-}
-
-/**
- * @Languages(["php", 
-       "java",       "JavaScript"     ]     )
- */
-class Hacker
-{
-   /**
-    * @Target("microsoft")
-    * @Technologies([
-         "telnet",
-         "python"
-      ])
-    */
-   function hackit() {}
 }
 
 /**
